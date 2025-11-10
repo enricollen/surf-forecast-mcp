@@ -124,7 +124,6 @@ class SurfForecast(BaseModel):
         
         lines = [
             f"# Surf Forecast: {self.location}",
-            f"Location: {self.latitude:.4f}, {self.longitude:.4f}",
             "",
             "## Current Conditions",
             f"Waves: {self.current_conditions.wave_height_m:.1f}m ({self.current_conditions.wave_period_s:.0f}s period)",
@@ -171,11 +170,6 @@ class SurfForecast(BaseModel):
                 f"  Wind: {day.wind_speed_max_knots:.0f} knots from {wind_dir}",
                 f"  Temp: {day.temperature_min_c:.0f}-{day.temperature_max_c:.0f}°C"
             ])
-        
-        lines.extend([
-            "",
-            self.surf_quality_notes
-        ])
         
         return "\n".join(lines)
 
