@@ -36,7 +36,7 @@ python server.py
 
 deploy to fastmcp cloud in minutes:
 
-1. create a [fastmcp cloud account](http://fastmcp.cloud/signup)
+1. create a [fastmcp cloud account](https://fastmcp.cloud/)
 2. connect your github account
 3. deploy this repository
 4. your server will be available instantly to any mcp client
