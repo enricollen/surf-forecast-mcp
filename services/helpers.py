@@ -46,4 +46,3 @@ def format_direction(degrees: float, uppercase: bool = True) -> str:
     if uppercase:
         compass = compass.upper()
     return f"{degrees:.0f}° ({compass})"
-

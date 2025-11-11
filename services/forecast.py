@@ -170,4 +170,3 @@ class ForecastService:
             forecast_5day=forecast_days,
             surf_quality_notes=quality_notes
         )
-
