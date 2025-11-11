@@ -11,6 +11,55 @@ from services import ForecastService
 mcp = FastMCP("Surf Forecast Server")
 
 
+@mcp.resource("surf://info")
+def get_server_info() -> str:
+    """
+    provides information about the surf forecast mcp server.
+    
+    returns details about capabilities, data sources, and usage guidelines.
+    """
+    return """
+    surf forecast mcp server
+    
+    capabilities:
+    - real-time surf and wave forecasts for any coastal location worldwide
+    - 5-day forecast with hourly data
+    - wave height, direction, and period analysis
+    - wind conditions (speed, direction, gusts)
+    - surf quality assessment
+    
+    data sources:
+    - open-meteo marine forecast api
+    - open-meteo weather forecast api
+    - nominatim geocoding service
+    
+    usage:
+    use the get_surf_forecast tool with a city name to retrieve detailed surf conditions.
+    the server provides comprehensive wave analysis optimized for surfers and water sports enthusiasts.
+    """
+
+
+@mcp.prompt()
+def analyze_surf_conditions(location: str) -> str:
+    """
+    generate a prompt for analyzing surf conditions at a specific location.
+    
+    args:
+        location: name of the city/location to analyze
+    """
+    return f"""
+    please analyze the surf conditions for {location} and provide:
+    
+    1. current surf quality and whether it's suitable for surfing
+    2. best time to surf in the next 24 hours (considering wave height, wind, and conditions)
+    3. forecast trend for the next few days (improving or deteriorating)
+    4. any incoming swell (swell height, swell direction, swell period, etc.)
+    
+    use the get_surf_forecast tool to retrieve the data, then provide a clear,
+    actionable summary for surfers planning their session.
+    """
+
+
 @mcp.tool()
 def get_surf_forecast(city_name: str) -> str:
     """
